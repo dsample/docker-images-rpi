@@ -1,11 +1,8 @@
 # Node-RED IoT
 
-A Node-RED Docker image for for IoT on the Raspberry Pi 3
+A Node-RED Docker image for IoT on the Raspberry Pi 3
 
-* [GitHub repository](https://github.com/dsample/node-red-iot)
-* [Dockerfile](https://github.com/dsample/node-red-iot/blob/master/Dockerfile.rpi)
-
-Based on the [nodered/node-red-docker:rpi](https://hub.docker.com/r/nodered/node-red-docker/) image, with additional configuration for getting a Raspberry Pi 3 up and running as an home automation/IoT controller.
+Based on the [nodered/node-red-docker:rpi](https://hub.docker.com/r/nodered/node-red-docker/) image, with additional configuration for getting a Raspberry Pi 3 up and running as a home automation/IoT controller.
 
 Currently included plugins:
 
