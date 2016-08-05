@@ -1,0 +1,21 @@
+FROM nodered/node-red-docker:rpi
+MAINTAINER Duncan Sample <docker@antimatters.co.uk>
+LABEL version="1.0" \
+      description="A Node-RED image with the PunchThrough Bean (and other IoT) modules installed"
+
+USER root
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  bluetooth \
+  bluez \
+  libbluetooth-dev \
+  libudev-dev \
+  build-essential bluez-tools
+
+RUN usermod -a -G bluetooth node-red && \
+    setcap cap_net_raw+eip /usr/local/bin/node
+
+USER node-red
+
+RUN npm install noble node-red-contrib-bean
+EXPOSE 1880
