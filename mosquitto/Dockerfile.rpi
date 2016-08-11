@@ -9,7 +9,7 @@ ADD https://repo.mosquitto.org/debian/mosquitto-jessie.list /etc/apt/sources.lis
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y mosquitto \
+    apt-get install -y mosquitto && \
     rm -f mosquitto-repo.gpg.key
 
 RUN adduser --system --disabled-password --disabled-login mosquitto
