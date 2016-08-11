@@ -1,0 +1,23 @@
+FROM resin/rpi-raspbian:jessie
+MAINTAINER Duncan Sample <docker@antimatters.co.uk>
+LABEL version="1.0" \
+      description=""
+
+RUN apt-get update && \
+    apt-get upgrade -y
+
+# Get the 'Ubuntu & Debian (ARM)' package from https://influxdata.com/downloads/#influxdb
+ADD https://dl.influxdata.com/influxdb/releases/influxdb_0.13.0_armhf.deb .
+RUN dpkg -i influxdb_0.13.0_armhf.deb && \
+    rm -f influxdb_0.13.0_armhf.deb
+
+COPY influxdb.conf /etc/influxdb/
+
+VOLUME ["/influxdb/meta", "/influxdb/data", "/influxdb/wal"]
+
+EXPOSE 8083 8086
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["influxd"]
